@@ -24,42 +24,11 @@ button, input, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 
-.login-page {
-  min-height: 100vh;
-  padding: 28px;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(216,241,123,.45), transparent 28%),
-    var(--paper);
+.local-save-status {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
 }
-.login-card {
-  width: min(480px, 100%);
-  padding: clamp(30px, 6vw, 54px);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: var(--white);
-  box-shadow: 0 26px 70px rgba(25,33,36,.12);
-}
-.login-card .eyebrow { margin: 42px 0 10px; }
-.login-card h1 { margin: 0; font-size: clamp(38px, 7vw, 56px); line-height: 1.05; letter-spacing: -.065em; }
-.login-description { margin: 22px 0 28px; color: var(--muted); line-height: 1.7; word-break: keep-all; }
-.login-card form { display: grid; gap: 10px; }
-.login-card label { font-size: 12px; font-weight: 850; }
-.login-card input {
-  width: 100%;
-  padding: 15px 16px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  outline: none;
-}
-.login-card input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(11,107,87,.1); }
-.login-card form .primary { margin-top: 4px; }
-.login-card > small { display: block; margin-top: 18px; color: var(--muted); line-height: 1.55; }
-.form-error { margin: 0; color: #c4472e; font-size: 12px; }
-.profile-control { display: flex; align-items: center; gap: 12px; }
-.profile-control span { color: var(--muted); font-size: 12px; font-weight: 750; }
-.profile-control button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: white; font-size: 11px; font-weight: 800; }
 
 .home-header, .simple-header, .exam-header {
   height: 76px;

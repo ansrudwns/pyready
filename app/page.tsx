@@ -1325,10 +1325,6 @@ function formatTime(seconds: number) {
   return `${minute}:${second}`;
 }
 
-function profileStorageKey(email: string, name: string) {
-  return `py-ready:${email.toLowerCase()}:${name}`;
-}
-
 export default function Home() {
   const [view, setView] = useState<"home" | "exam" | "result">("home");
   const [selected, setSelected] = useState<Category[]>(categories);
@@ -1342,24 +1338,15 @@ export default function Home() {
   const [history, setHistory] = useState<History[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
-  const [profileEmail, setProfileEmail] = useState<string | null>(null);
-  const [emailDraft, setEmailDraft] = useState("");
-  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
-    const activeProfile = localStorage.getItem("py-ready-active-profile");
-    if (activeProfile) setProfileEmail(activeProfile);
-  }, []);
-
-  useEffect(() => {
-    if (!profileEmail) return;
-    const saved = localStorage.getItem(profileStorageKey(profileEmail, "history"));
+    const saved = localStorage.getItem("py-ready-history");
     setHistory(saved ? JSON.parse(saved) : []);
-    const savedBookmarks = localStorage.getItem(profileStorageKey(profileEmail, "bookmarks"));
+    const savedBookmarks = localStorage.getItem("py-ready-bookmarks");
     setMarked(savedBookmarks ? JSON.parse(savedBookmarks) : []);
-    const savedWrong = localStorage.getItem(profileStorageKey(profileEmail, "wrong"));
+    const savedWrong = localStorage.getItem("py-ready-wrong");
     setWrongIds(savedWrong ? JSON.parse(savedWrong) : []);
-  }, [profileEmail]);
+  }, []);
 
   useEffect(() => {
     if (view !== "exam" || submitted || seconds === null) return;
@@ -1442,9 +1429,7 @@ export default function Home() {
       ...newlyWrong,
     ];
     setWrongIds(nextWrong);
-    if (profileEmail) {
-      localStorage.setItem(profileStorageKey(profileEmail, "wrong"), JSON.stringify(nextWrong));
-    }
+    localStorage.setItem("py-ready-wrong", JSON.stringify(nextWrong));
     const nextHistory = objectiveResults.length
       ? [
           {
@@ -1460,9 +1445,7 @@ export default function Home() {
         ].slice(0, 8)
       : history;
     setHistory(nextHistory);
-    if (profileEmail) {
-      localStorage.setItem(profileStorageKey(profileEmail, "history"), JSON.stringify(nextHistory));
-    }
+    localStorage.setItem("py-ready-history", JSON.stringify(nextHistory));
     setView("result");
   }
 
@@ -1471,30 +1454,7 @@ export default function Home() {
       ? marked.filter((item) => item !== id)
       : [...marked, id];
     setMarked(next);
-    if (profileEmail) {
-      localStorage.setItem(profileStorageKey(profileEmail, "bookmarks"), JSON.stringify(next));
-    }
-  }
-
-  function enterProfile() {
-    const normalizedEmail = emailDraft.trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-      setEmailError("이메일 형식으로 입력해주세요. 실제 이메일이 아니어도 괜찮아요.");
-      return;
-    }
-    localStorage.setItem("py-ready-active-profile", normalizedEmail);
-    setProfileEmail(normalizedEmail);
-    setEmailDraft("");
-    setEmailError("");
-  }
-
-  function leaveProfile() {
-    localStorage.removeItem("py-ready-active-profile");
-    setProfileEmail(null);
-    setHistory([]);
-    setMarked([]);
-    setWrongIds([]);
-    setView("home");
+    localStorage.setItem("py-ready-bookmarks", JSON.stringify(next));
   }
 
   function toggleCategory(category: Category) {
@@ -1504,45 +1464,6 @@ export default function Home() {
           ? before
           : before.filter((item) => item !== category)
         : [...before, category],
-    );
-  }
-
-  if (!profileEmail) {
-    return (
-      <main className="login-page">
-        <section className="login-card">
-          <div className="brand"><span>Py</span>READY</div>
-          <p className="eyebrow">개인 학습 프로필</p>
-          <h1>내 기록으로<br />계속 공부하세요.</h1>
-          <p className="login-description">
-            이메일 형식의 이름으로 오답, 북마크, 응시 기록을 구분합니다.
-            실제 이메일 주소가 아니어도 괜찮습니다.
-          </p>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              enterProfile();
-            }}
-          >
-            <label htmlFor="profile-email">프로필 이메일</label>
-            <input
-              id="profile-email"
-              type="email"
-              value={emailDraft}
-              onChange={(event) => {
-                setEmailDraft(event.target.value);
-                setEmailError("");
-              }}
-              placeholder="student@example.com"
-              autoComplete="email"
-              autoFocus
-            />
-            {emailError && <p className="form-error">{emailError}</p>}
-            <button className="primary" type="submit">학습 시작하기</button>
-          </form>
-          <small>기록은 이 브라우저에만 저장되며 다른 기기와 자동 동기화되지 않습니다.</small>
-        </section>
-      </main>
     );
   }
 
@@ -1846,10 +1767,7 @@ export default function Home() {
     <main>
       <header className="home-header">
         <div className="brand"><span>Py</span>READY</div>
-        <div className="profile-control">
-          <span>{profileEmail}</span>
-          <button onClick={leaveProfile}>프로필 변경</button>
-        </div>
+        <span className="local-save-status">이 브라우저에 자동 저장</span>
       </header>
 
       <section className="hero">
