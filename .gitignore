@@ -49,4 +49,5 @@ next-env.d.ts
 /.qa-server*.log
 /.dev-server.log
 /.dev-server*.log
+/.pages-preview*.log
 /.openai/
