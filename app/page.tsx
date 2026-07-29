@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { checkShortAnswer } from "../src/grading.js";
 
 type Kind = "객관식" | "단답형" | "서술형";
 type Category =
@@ -1303,18 +1304,10 @@ function shuffle<T>(items: T[]): T[] {
   return result;
 }
 
-function normalize(value: string) {
-  return value
-    .trim()
-    .replace(/\n/g, " ")
-    .replace(/\s+/g, " ")
-    .replace(/[.!。]/g, "")
-    .toLowerCase();
-}
-
 function checkAnswer(question: Question, answer: string) {
   if (question.kind === "서술형") return false;
-  return normalize(answer) === normalize(question.answer);
+  if (question.kind === "객관식") return answer === question.answer;
+  return checkShortAnswer(question.answer, answer);
 }
 
 function formatTime(seconds: number) {
@@ -1558,7 +1551,7 @@ export default function Home() {
                     }
                   }}
                 />
-                <span>여러 줄 출력은 공백으로 구분해도 됩니다.</span>
+                <span>여러 줄은 공백으로 입력해도 되며, 따옴표·딕셔너리 순서는 유연하게 채점합니다.</span>
               </div>
             )}
 
