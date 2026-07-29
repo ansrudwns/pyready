@@ -1325,6 +1325,7 @@ export default function Home() {
   const [minutes, setMinutes] = useState<TimeLimit>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [revealedIds, setRevealedIds] = useState<string[]>([]);
   const [marked, setMarked] = useState<string[]>([]);
   const [current, setCurrent] = useState(0);
   const [seconds, setSeconds] = useState<number | null>(null);
@@ -1404,6 +1405,7 @@ export default function Home() {
     );
     setQuestions(next);
     setAnswers({});
+    setRevealedIds([]);
     setCurrent(0);
     setSeconds(minutes === null ? null : minutes * 60);
     setSubmitted(false);
@@ -1450,6 +1452,22 @@ export default function Home() {
     localStorage.setItem("py-ready-bookmarks", JSON.stringify(next));
   }
 
+  function revealAnswer(question: Question) {
+    const answer = answers[question.id] ?? "";
+    if (!answer.trim() || revealedIds.includes(question.id)) return;
+    setRevealedIds((before) => [...before, question.id]);
+
+    if (question.kind === "서술형") return;
+    const correct = checkAnswer(question, answer);
+    const nextWrong = correct
+      ? wrongIds.filter((id) => id !== question.id)
+      : wrongIds.includes(question.id)
+        ? wrongIds
+        : [...wrongIds, question.id];
+    setWrongIds(nextWrong);
+    localStorage.setItem("py-ready-wrong", JSON.stringify(nextWrong));
+  }
+
   function toggleCategory(category: Category) {
     setSelected((before) =>
       before.includes(category)
@@ -1462,6 +1480,12 @@ export default function Home() {
 
   if (view === "exam") {
     const question = questions[current];
+    const isRevealed = revealedIds.includes(question.id);
+    const currentAnswer = answers[question.id] ?? "";
+    const currentCorrect =
+      question.kind !== "서술형" && isRevealed
+        ? checkAnswer(question, currentAnswer)
+        : false;
     const answeredCount = Object.values(answers).filter((answer) => answer.trim()).length;
     return (
       <main className="exam-shell">
@@ -1511,6 +1535,7 @@ export default function Home() {
                   <button
                     key={choice}
                     className={answers[question.id] === choice ? "selected" : ""}
+                    disabled={isRevealed}
                     onClick={() =>
                       setAnswers((before) => ({ ...before, [question.id]: choice }))
                     }
@@ -1524,6 +1549,7 @@ export default function Home() {
               <div className="answer-field">
                 <textarea
                   value={answers[question.id] ?? ""}
+                  disabled={isRevealed}
                   onChange={(event) =>
                     setAnswers((before) => ({
                       ...before,
@@ -1538,6 +1564,7 @@ export default function Home() {
               <div className="answer-field">
                 <input
                   value={answers[question.id] ?? ""}
+                  disabled={isRevealed}
                   onChange={(event) =>
                     setAnswers((before) => ({
                       ...before,
@@ -1555,6 +1582,35 @@ export default function Home() {
               </div>
             )}
 
+            {isRevealed && (
+              <div
+                className={[
+                  "instant-feedback",
+                  question.kind === "서술형"
+                    ? "essay"
+                    : currentCorrect
+                      ? "correct"
+                      : "wrong",
+                ].join(" ")}
+              >
+                <strong>
+                  {question.kind === "서술형"
+                    ? "모범답안과 비교해보세요"
+                    : currentCorrect
+                      ? "정답입니다"
+                      : "정답을 다시 확인해보세요"}
+                </strong>
+                <p>
+                  <b>{question.kind === "서술형" ? "모범답안" : "정답"}</b>
+                  {question.answer}
+                </p>
+                <div>
+                  <b>해설</b>
+                  {question.explanation}
+                </div>
+              </div>
+            )}
+
             <div className="question-actions">
               <button
                 className="secondary"
@@ -1562,6 +1618,17 @@ export default function Home() {
                 onClick={() => setCurrent(current - 1)}
               >
                 ← 이전 문제
+              </button>
+              <button
+                className="check-now"
+                disabled={!currentAnswer.trim() || isRevealed}
+                onClick={() => revealAnswer(question)}
+              >
+                {isRevealed
+                  ? "확인 완료"
+                  : question.kind === "서술형"
+                    ? "모범답안 보기"
+                    : "지금 채점하기"}
               </button>
               {current < questions.length - 1 ? (
                 <button className="primary" onClick={() => setCurrent(current + 1)}>
@@ -1590,6 +1657,7 @@ export default function Home() {
                   className={[
                     index === current ? "current" : "",
                     answers[item.id]?.trim() ? "answered" : "",
+                    revealedIds.includes(item.id) ? "revealed" : "",
                     marked.includes(item.id) ? "marked" : "",
                   ].join(" ")}
                   onClick={() => setCurrent(index)}
@@ -1600,12 +1668,13 @@ export default function Home() {
             </div>
             <div className="legend">
               <span><i className="dot answered" />답변 완료</span>
+              <span><i className="dot revealed" />개별 확인</span>
               <span><i className="dot marked" />검토 표시</span>
             </div>
             <button className="finish-button" onClick={submitExam}>
               시험 종료 및 채점
             </button>
-            <p className="save-note">답안은 입력 즉시 자동 저장됩니다.</p>
+            <p className="save-note">오답과 북마크 기록은 이 브라우저에 저장됩니다.</p>
           </aside>
         </div>
       </main>
