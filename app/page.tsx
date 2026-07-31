@@ -1587,6 +1587,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [view]);
+
+  useEffect(() => {
     if (view !== "exam" || submitted || seconds === null) return;
     const timer = window.setInterval(() => {
       setSeconds((value) => {
@@ -1722,6 +1726,18 @@ export default function Home() {
     );
   }
 
+  function goToQuestion(index: number) {
+    setCurrent(index);
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      window.requestAnimationFrame(() => {
+        document.querySelector(".question-panel")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    }
+  }
+
   if (view === "exam") {
     const question = questions[current];
     const questionPageSize = 20;
@@ -1753,6 +1769,9 @@ export default function Home() {
               {answeredCount}/{questions.length} 답안 작성
             </span>
           </div>
+          <span className="mobile-progress" aria-label={`${answeredCount}/${questions.length} 답안 작성`}>
+            {answeredCount}/{questions.length}
+          </span>
           <div className={`timer ${seconds !== null && seconds < 300 ? "urgent" : ""}`}>
             <span>남은 시간</span>
             <strong>{seconds === null ? "무제한" : formatTime(seconds)}</strong>
@@ -1881,7 +1900,7 @@ export default function Home() {
               <button
                 className="secondary"
                 disabled={current === 0}
-                onClick={() => setCurrent(current - 1)}
+                onClick={() => goToQuestion(current - 1)}
               >
                 ← 이전 문제
               </button>
@@ -1897,7 +1916,7 @@ export default function Home() {
                     : "지금 채점하기"}
               </button>
               {current < questions.length - 1 ? (
-                <button className="primary" onClick={() => setCurrent(current + 1)}>
+                <button className="primary" onClick={() => goToQuestion(current + 1)}>
                   다음 문제 →
                 </button>
               ) : (
@@ -1922,7 +1941,7 @@ export default function Home() {
                   type="button"
                   aria-label="이전 문제 구간"
                   disabled={questionPage === 0}
-                  onClick={() => setCurrent(Math.max(0, questionPageStart - questionPageSize))}
+                  onClick={() => goToQuestion(Math.max(0, questionPageStart - questionPageSize))}
                 >
                   ←
                 </button>
@@ -1933,7 +1952,7 @@ export default function Home() {
                   type="button"
                   aria-label="다음 문제 구간"
                   disabled={questionPage === questionPageCount - 1}
-                  onClick={() => setCurrent(questionPageEnd)}
+                  onClick={() => goToQuestion(questionPageEnd)}
                 >
                   →
                 </button>
@@ -1951,7 +1970,7 @@ export default function Home() {
                       revealedIds.includes(item.id) ? "revealed" : "",
                       marked.includes(item.id) ? "marked" : "",
                     ].join(" ")}
-                    onClick={() => setCurrent(index)}
+                    onClick={() => goToQuestion(index)}
                   >
                     {index + 1}
                   </button>
@@ -2067,7 +2086,6 @@ export default function Home() {
               <details
                 key={question.id}
                 className={!graded ? "essay" : correct ? "correct" : "wrong"}
-                open={!graded || !correct}
               >
                 <summary>
                   <span className="result-icon">{!graded ? "✎" : correct ? "✓" : "!"}</span>
@@ -2121,7 +2139,7 @@ export default function Home() {
     <main>
       <header className="home-header">
         <div className="brand"><span>Py</span>READY</div>
-        <span className="local-save-status">오답 기록과 북마크는 이 브라우저에 자동 저장됩니다.</span>
+        <span className="local-save-status">오답·북마크 자동 저장</span>
       </header>
 
       <section className="hero">
