@@ -29,24 +29,6 @@ button { cursor: pointer; }
   font-size: 12px;
   font-weight: 800;
 }
-.home-header-actions { display: flex; align-items: center; gap: 14px; }
-.home-header .header-pdf-download {
-  min-height: 44px;
-  padding: 0 17px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 9px;
-  border: 1px solid #bad259;
-  background: var(--lime);
-  color: var(--green-dark);
-  font-size: 14px;
-  font-weight: 850;
-  text-decoration: none;
-  box-shadow: 0 6px 16px rgba(8,76,64,.2);
-}
-.home-header .header-pdf-download:hover { background: #cbe766; transform: translateY(-1px); }
-.home-header .header-pdf-download span { color: var(--green-dark); font-size: 17px; }
 
 .home-header, .simple-header, .exam-header {
   height: 76px;
@@ -556,9 +538,6 @@ footer { display: none; }
   .hero { padding: 45px 22px 60px; min-height: auto; }
   .hero h1 { font-size: 49px; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
-  .home-header-actions { gap: 8px; }
-  .home-header .header-pdf-download { min-height: 40px; padding: 0 11px; font-size: 12px; }
-  .local-save-status { display: none; }
   .summary-resource-banner { grid-template-columns: auto 1fr; padding: 16px; }
   .summary-resource-action { grid-column: 1 / -1; text-align: center; }
   .exam-facts { gap: 13px; }
