@@ -32,3 +32,8 @@ test("정답 외 설명을 덧붙이면 오답이다", () => {
 test("운영체제 줄바꿈 차이만 정규화한다", () => {
   assert.equal(checkShortAnswer("A\nB", "A\r\nB"), true);
 });
+
+test("여러 줄 출력을 공백 한 줄로 바꾸면 오답이다", () => {
+  assert.equal(checkShortAnswer("A\nB", "A B"), false);
+  assert.equal(checkShortAnswer("A\nB", "A\nB"), true);
+});
