@@ -225,7 +225,7 @@ button.brand { border: 0; background: transparent; color: var(--ink); padding: 0
 .segment button.active { background: #e8f2ee; border-color: var(--green); color: var(--green); }
 .segment button.active strong { color: var(--green); }
 .start-banner {
-  width: 100%; max-width: 920px; margin: 16px auto 0; padding: 24px 28px; border: 0; border-radius: 15px;
+  width: 100%; max-width: 920px; margin: 16px 0 0; padding: 24px 28px; border: 0; border-radius: 15px;
   display: flex; justify-content: space-between; align-items: center; text-align: left;
   background: var(--green); color: white;
 }
@@ -446,7 +446,7 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
 .summary-resource-banner {
   width: 100%;
   max-width: 920px;
-  margin: 0 auto 28px;
+  margin: 0 0 28px;
   padding: 18px 20px;
   display: grid;
   grid-template-columns: auto 1fr auto;
