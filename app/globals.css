@@ -225,7 +225,7 @@ button.brand { border: 0; background: transparent; color: var(--ink); padding: 0
 .segment button.active { background: #e8f2ee; border-color: var(--green); color: var(--green); }
 .segment button.active strong { color: var(--green); }
 .start-banner {
-  width: 100%; margin-top: 16px; padding: 24px 28px; border: 0; border-radius: 15px;
+  width: 100%; max-width: 920px; margin: 16px auto 0; padding: 24px 28px; border: 0; border-radius: 15px;
   display: flex; justify-content: space-between; align-items: center; text-align: left;
   background: var(--green); color: white;
 }
@@ -445,7 +445,8 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
 .practice-section { min-height: calc(100vh - 64px); padding-top: 58px; }
 .summary-resource-banner {
   width: 100%;
-  margin-bottom: 28px;
+  max-width: 920px;
+  margin: 0 auto 28px;
   padding: 18px 20px;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -540,6 +541,7 @@ footer { display: none; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
   .summary-resource-banner { grid-template-columns: auto 1fr; padding: 16px; }
   .summary-resource-action { grid-column: 1 / -1; text-align: center; }
+  .summary-resource-banner, .start-banner { max-width: none; }
   .exam-facts { gap: 13px; }
   .exam-facts div { padding-right: 12px; }
   .hero-visual { height: 415px; }
