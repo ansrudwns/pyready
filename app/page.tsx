@@ -1752,10 +1752,7 @@ export default function Home() {
       question.kind !== "서술형" && isRevealed
         ? checkAnswer(question, currentAnswer)
         : false;
-    const canReveal =
-      question.kind === "서술형"
-        ? currentAnswer.trim().length >= 100
-        : Boolean(currentAnswer.trim());
+    const canReveal = Boolean(currentAnswer.trim());
     const answeredCount = Object.values(answers).filter((answer) => answer.trim()).length;
     return (
       <main className="exam-shell">
@@ -1831,7 +1828,7 @@ export default function Home() {
                   }
                   placeholder="문제에서 요구한 핵심 개념, 결과와 이유를 100자 이상으로 작성하세요."
                 />
-                <span>{(answers[question.id] ?? "").trim().length}자 / 최소 100자</span>
+                <span>{(answers[question.id] ?? "").trim().length}자 작성 · 시험 답안 기준 100자 이상</span>
               </div>
             ) : question.answer.includes("\n") ? (
               <div className="answer-field">
