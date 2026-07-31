@@ -2139,7 +2139,16 @@ export default function Home() {
     <main>
       <header className="home-header">
         <div className="brand"><span>Py</span>READY</div>
-        <span className="local-save-status">오답·북마크 자동 저장</span>
+        <div className="home-header-actions">
+          <a
+            className="header-pdf-download"
+            href={`${import.meta.env.BASE_URL}downloads/python-subject-exam-core-summary.pdf`}
+            download="Python_과목평가_핵심정리.pdf"
+          >
+            <span aria-hidden="true">↓</span> 핵심 정리 PDF
+          </a>
+          <span className="local-save-status">오답·북마크 자동 저장</span>
+        </div>
       </header>
 
       <section className="hero">
@@ -2158,13 +2167,6 @@ export default function Home() {
             <button className="primary large" onClick={() => startExam()}>
               실전 모의평가 시작 <span>→</span>
             </button>
-            <a
-              className="summary-download"
-              href={`${import.meta.env.BASE_URL}downloads/python-subject-exam-core-summary.pdf`}
-              download="Python_과목평가_핵심정리.pdf"
-            >
-              핵심 정리 PDF 다운로드 <span aria-hidden="true">↓</span>
-            </a>
             <a href="#practice">시험 설정하기</a>
           </div>
           <div className="exam-facts">
