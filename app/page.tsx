@@ -71,7 +71,7 @@ const baseQuestions: Question[] = [
     id: "op-2",
     category: "연산자·형변환",
     kind: "객관식",
-    question: "다음 코드의 출력 결과는?",
+    question: "다음 코드를 실행했을 때 출력되는 결과로 옳은 것을 고르시오.",
     code: 'print("" or "Python")',
     choices: ["True", "False", "Python", ""],
     answer: "Python",
@@ -82,7 +82,7 @@ const baseQuestions: Question[] = [
     id: "op-3",
     category: "연산자·형변환",
     kind: "단답형",
-    question: "출력 결과를 공백까지 정확히 작성하세요.",
+    question: "출력 결과를 공백까지 정확히 작성하시오.",
     code: 'value = "24"\nprint(int(value) + 3, type(value).__name__)',
     answer: "27 str",
     explanation:
@@ -92,7 +92,7 @@ const baseQuestions: Question[] = [
     id: "seq-1",
     category: "문자열·시퀀스",
     kind: "단답형",
-    question: "다음 코드의 출력 결과는?",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     code: 'text = "developer"\nprint(text[1::2])',
     answer: "eeoe",
     explanation: "인덱스 1부터 시작해 두 칸 간격으로 문자를 선택합니다.",
@@ -115,7 +115,7 @@ const baseQuestions: Question[] = [
     id: "seq-3",
     category: "문자열·시퀀스",
     kind: "단답형",
-    question: "메서드 체이닝의 최종 출력 결과를 작성하세요.",
+    question: "메서드가 적용되는 순서를 고려하여 최종 출력 결과를 정확히 작성하시오.",
     code: 'print("  Code Review  ".strip().lower().replace(" ", "_"))',
     answer: "code_review",
     explanation: "strip → lower → replace 순서로 각각 새 문자열을 반환합니다.",
@@ -124,7 +124,7 @@ const baseQuestions: Question[] = [
     id: "flow-1",
     category: "제어문",
     kind: "단답형",
-    question: "다음 코드의 출력 결과는?",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     code:
       "total = 0\nfor i in range(1, 8):\n    if i % 3 == 0:\n        continue\n    total += i\nprint(total)",
     answer: "19",
@@ -153,7 +153,7 @@ const baseQuestions: Question[] = [
     id: "func-1",
     category: "함수·스코프",
     kind: "단답형",
-    question: "줄바꿈으로 출력되는 두 값을 순서대로 작성하세요.",
+    question: "줄바꿈으로 출력되는 두 값을 순서대로 작성하시오.",
     code:
       "number = 10\n\ndef change():\n    number = 25\n    print(number)\n\nchange()\nprint(number)",
     answer: "25 10",
@@ -173,16 +173,16 @@ const baseQuestions: Question[] = [
     id: "func-3",
     category: "함수·스코프",
     kind: "서술형",
-    question: "return과 print의 차이를 10자 이상으로 설명하세요.",
-    answer: "return은 값을 반환하고 print는 화면에 출력한다",
+    question: "return과 print의 차이를 핵심 동작과 용도를 포함하여 100자 이상으로 서술하시오.",
+    answer: "return은 함수의 실행을 종료하고 계산한 값을 호출한 위치로 전달하므로, 반환값을 변수에 저장하거나 다른 연산에 다시 사용할 수 있다. 반면 print는 전달받은 값을 화면에 표시할 뿐 호출자에게 값을 반환하지 않으며 반환값은 None이다. 따라서 함수의 결과를 이후 코드에서 활용하려면 return을 사용하고, 실행 과정이나 결과를 눈으로 확인하려면 print를 사용한다.",
     explanation:
-      "return은 함수 실행을 끝내고 값을 호출자에게 전달하지만 print는 화면 출력만 수행합니다.",
+      "return은 함수 실행을 끝내고 값을 호출자에게 전달합니다. 이 값은 저장하거나 다른 연산에 사용할 수 있습니다. print는 화면에 내용을 표시하지만 표시한 값을 호출자에게 전달하지 않으며, print 함수 자체의 반환값은 None입니다.",
   },
   {
     id: "data-1",
     category: "자료구조",
     kind: "단답형",
-    question: "다음 코드의 출력 결과는?",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     code:
       "numbers = [3, 1, 4]\nresult = numbers.append(2)\nprint(result, numbers)",
     answer: "None [3, 1, 4, 2]",
@@ -239,7 +239,7 @@ const baseQuestions: Question[] = [
     id: "oop-2",
     category: "OOP",
     kind: "단답형",
-    question: "다음 코드의 출력 결과는?",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     code:
       'class Animal:\n    def sound(self):\n        return "동물"\n\nclass Dog(Animal):\n    def sound(self):\n        return "멍멍"\n\nprint(Dog().sound())',
     answer: "멍멍",
@@ -258,7 +258,7 @@ const baseQuestions: Question[] = [
     id: "except-1",
     category: "예외처리",
     kind: "단답형",
-    question: "출력되는 두 문구를 순서대로 작성하세요.",
+    question: "출력되는 두 문구를 순서대로 작성하시오.",
     code:
       'try:\n    value = int("3.5")\nexcept ValueError:\n    print("변환 오류")\nfinally:\n    print("종료")',
     answer: "변환 오류 종료",
@@ -282,9 +282,9 @@ const baseQuestions: Question[] = [
     id: "except-3",
     category: "예외처리",
     kind: "서술형",
-    question: "finally 블록이 언제 실행되는지 10자 이상으로 설명하세요.",
-    answer: "예외 발생 여부와 관계없이 항상 실행된다",
-    explanation: "finally는 정상 실행과 예외 발생 여부에 관계없이 마무리를 위해 실행됩니다.",
+    question: "finally 블록이 실행되는 시점과 역할을 예외 발생 여부와 연결하여 100자 이상으로 서술하시오.",
+    answer: "finally 블록은 try 블록이 정상적으로 끝난 경우와 예외가 발생한 경우 모두 마지막에 실행된다. except에서 예외를 처리했는지와도 관계없이 실행되므로 파일 닫기, 네트워크 연결 해제처럼 반드시 수행해야 하는 정리 작업에 사용한다. return이 실행되거나 처리되지 않은 예외가 다시 전달되는 상황에서도 함수나 구문을 완전히 벗어나기 전에 finally가 먼저 실행된다.",
+    explanation: "finally는 정상 실행, 처리된 예외, 처리되지 않은 예외와 관계없이 제어 흐름이 try 문을 벗어나기 전에 실행됩니다. 따라서 성공 여부와 무관하게 수행해야 하는 자원 정리 작업을 배치하는 데 적합합니다.",
   },
 ];
 
@@ -308,7 +308,7 @@ const conceptQuestions: Question[] = [
     id: "op-is-2",
     category: "연산자·형변환",
     kind: "단답형",
-    question: "다음 코드의 출력 결과를 작성하세요.",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     code: "a = [1, 2]\nb = [1, 2]\nc = a\nprint(a == b, a is b, a is c)",
     answer: "True False True",
     explanation:
@@ -423,7 +423,7 @@ const conceptQuestions: Question[] = [
     id: "seq-range-1",
     category: "문자열·시퀀스",
     kind: "단답형",
-    question: "range의 종료값과 음수 step을 주의해 출력 결과를 작성하세요.",
+    question: "range의 종료값과 음수 step을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "print(list(range(5, 0, -2)))",
     answer: "[5, 3, 1]",
     explanation:
@@ -458,7 +458,7 @@ const conceptQuestions: Question[] = [
     id: "flow-break-else",
     category: "제어문",
     kind: "단답형",
-    question: "for-else의 동작을 고려해 출력 결과를 작성하세요.",
+    question: "for-else의 동작을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "for number in [1, 3, 5]:\n    if number % 2 == 0:\n        break\nelse:\n    print('완료')",
     answer: "완료",
     explanation:
@@ -493,7 +493,7 @@ const conceptQuestions: Question[] = [
     id: "flow-enumerate",
     category: "제어문",
     kind: "단답형",
-    question: "enumerate의 start 인자를 고려해 출력 결과를 작성하세요.",
+    question: "enumerate의 start 인자를 고려하여 출력 결과를 정확히 작성하시오.",
     code: "for index, value in enumerate(['a', 'b'], start=1):\n    print(index, value)",
     answer: "1 a 2 b",
     explanation:
@@ -528,7 +528,7 @@ const conceptQuestions: Question[] = [
     id: "func-args-1",
     category: "함수·스코프",
     kind: "단답형",
-    question: "*args의 타입과 값을 고려해 출력 결과를 작성하세요.",
+    question: "*args의 자료형과 값을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "def collect(*args):\n    print(type(args).__name__, args)\ncollect(1, 2, 3)",
     answer: "tuple (1, 2, 3)",
     explanation:
@@ -538,7 +538,7 @@ const conceptQuestions: Question[] = [
     id: "func-kwargs-1",
     category: "함수·스코프",
     kind: "단답형",
-    question: "**kwargs의 타입을 작성하세요.",
+    question: "**kwargs의 자료형을 정확히 작성하시오.",
     code: "def info(**kwargs):\n    print(type(kwargs).__name__)\ninfo(name='Kim', age=20)",
     answer: "dict",
     explanation:
@@ -573,7 +573,7 @@ const conceptQuestions: Question[] = [
     id: "func-nonlocal",
     category: "함수·스코프",
     kind: "단답형",
-    question: "nonlocal의 효과를 고려해 출력 결과를 작성하세요.",
+    question: "nonlocal의 효과를 고려하여 출력 결과를 정확히 작성하시오.",
     code: "def outer():\n    x = 1\n    def inner():\n        nonlocal x\n        x += 1\n    inner()\n    print(x)\nouter()",
     answer: "2",
     explanation:
@@ -623,7 +623,7 @@ const conceptQuestions: Question[] = [
     id: "data-copy-1",
     category: "자료구조",
     kind: "단답형",
-    question: "얕은 복사에서 중첩 리스트가 공유되는 결과를 작성하세요.",
+    question: "얕은 복사에서 중첩 리스트가 공유되는 점을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "a = [[1, 2], [3, 4]]\nb = a.copy()\nb[0].append(9)\nprint(a)",
     answer: "[[1, 2, 9], [3, 4]]",
     explanation:
@@ -633,7 +633,7 @@ const conceptQuestions: Question[] = [
     id: "data-alias-1",
     category: "자료구조",
     kind: "단답형",
-    question: "할당과 복사의 차이를 고려해 출력 결과를 작성하세요.",
+    question: "할당과 복사의 차이를 고려하여 출력 결과를 정확히 작성하시오.",
     code: "a = [1, 2]\nb = a\nb.append(3)\nprint(a is b, a)",
     answer: "True [1, 2, 3]",
     explanation:
@@ -723,7 +723,7 @@ const conceptQuestions: Question[] = [
     id: "data-method-chain",
     category: "자료구조",
     kind: "단답형",
-    question: "원본 변경 메서드의 반환값을 고려해 출력 결과를 작성하세요.",
+    question: "원본을 변경하는 메서드의 반환값을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "numbers = [3, 1, 2]\nresult = numbers.copy().sort()\nprint(result)",
     answer: "None",
     explanation:
@@ -838,7 +838,7 @@ const conceptQuestions: Question[] = [
     id: "except-as",
     category: "예외처리",
     kind: "단답형",
-    question: "발생하는 예외 클래스 이름을 작성하세요.",
+    question: "발생하는 예외 클래스 이름만 정확히 작성하시오.",
     code: "try:\n    [1, 2][5]\nexcept Exception as error:\n    print(type(error).__name__)",
     answer: "IndexError",
     explanation:
@@ -883,7 +883,7 @@ const generatedQuestions: Question[] = [
     id: `generated-op-${index}`,
     category: "연산자·형변환",
     kind: "단답형",
-    question: "연산자 우선순위를 적용한 출력 결과를 작성하세요.",
+    question: "연산자 우선순위를 적용하여 출력 결과를 정확히 작성하시오.",
     code: `print(${a} // ${b} + ${a} % ${b} * 2)`,
     answer: String(Math.floor(a / b) + (a % b) * 2),
     explanation: `//와 %를 먼저 계산합니다. ${a} // ${b}는 ${Math.floor(a / b)}, 나머지는 ${a % b}이므로 결과는 ${Math.floor(a / b) + (a % b) * 2}입니다.`,
@@ -898,7 +898,7 @@ const generatedQuestions: Question[] = [
       id: `generated-slice-${index}`,
       category: "문자열·시퀀스",
       kind: "단답형",
-      question: "슬라이싱 결과를 정확히 작성하세요.",
+      question: "슬라이싱 결과를 정확히 작성하시오.",
       code: `text = '${value}'\nprint(text[${begin}::${gap}])`,
       answer: [...value].filter((_, i) => i >= begin && (i - begin) % gap === 0).join(""),
       explanation: `인덱스 ${begin}부터 시작해 ${gap}칸 간격으로 끝까지 선택합니다.`,
@@ -930,7 +930,7 @@ const generatedQuestions: Question[] = [
       id: `generated-function-${index}`,
       category: "함수·스코프",
       kind: "단답형",
-      question: "함수의 반환값을 리스트 형식 그대로 작성하세요.",
+      question: "함수의 반환값을 리스트 형식 그대로 작성하시오.",
       code: `def transform(numbers, factor=${multiplier}):\n    return [number * factor for number in numbers if number % 2]\n\nprint(transform(${JSON.stringify(values)}))`,
       answer: JSON.stringify(answer).replaceAll(",", ", "),
       explanation: `홀수만 남긴 뒤 각각 ${multiplier}를 곱해 새 리스트로 반환합니다.`,
@@ -945,7 +945,7 @@ const generatedQuestions: Question[] = [
       id: `generated-dict-${index}`,
       category: "자료구조",
       kind: "단답형",
-      question: "딕셔너리 집계 후 출력되는 값을 작성하세요.",
+      question: "딕셔너리 집계 후 출력되는 값을 정확히 작성하시오.",
       code: `counts = {}\nfor item in ${JSON.stringify(values)}:\n    counts[item] = counts.get(item, 0) + 1\nprint(counts['${target}'])`,
       answer: String(count),
       explanation: `get(item, 0)으로 기존 개수를 가져와 1씩 누적하므로 '${target}'은 ${count}회입니다.`,
@@ -957,7 +957,7 @@ const generatedQuestions: Question[] = [
     id: `generated-exception-${index}`,
     category: "예외처리",
     kind: "단답형",
-    question: "출력되는 예외 클래스 이름을 작성하세요.",
+    question: "출력되는 예외 클래스 이름만 정확히 작성하시오.",
     code: `try:\n    ${expression}\nexcept Exception as error:\n    print(type(error).__name__)`,
     answer: error,
     explanation: `${expression} 표현식은 ${error}를 발생시킵니다.`,
@@ -968,7 +968,7 @@ const generatedQuestions: Question[] = [
     id: `generated-oop-${index}`,
     category: "OOP",
     kind: "단답형",
-    question: "자식 클래스의 속성 탐색 결과를 작성하세요.",
+    question: "자식 클래스의 속성 탐색 결과를 정확히 작성하시오.",
     code: `class Parent:\n    value = ${parentValue}\n\nclass ${name}(Parent):\n    value = ${childValue}\n\nprint(${name}().value)`,
     answer: String(childValue),
     explanation: `인스턴스에 해당 속성이 없으므로 자식 클래스에서 먼저 value를 찾아 ${childValue}를 출력합니다.`,
@@ -1011,7 +1011,7 @@ const examStyleQuestions: Question[] = [
     id: "exam-animal-output",
     category: "OOP",
     kind: "단답형",
-    question: "다음 코드를 실행했을 때 출력되는 결과만 정확히 작성하세요.",
+    question: "다음 코드를 실행했을 때 출력되는 결과만 정확히 작성하시오.",
     code: "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def walk(self):\n        print('걷는다!')\n\n    def eat(self):\n        print(f'{self.name}!먹는다!')\n\ndog = Animal('dog')\ndog.walk()",
     answer: "걷는다!",
     explanation:
@@ -1021,8 +1021,8 @@ const examStyleQuestions: Question[] = [
     id: "exam-enumerate-blank",
     category: "제어문",
     kind: "단답형",
-    question: "인덱스와 요소를 함께 순회하려고 합니다. (a)에 들어갈 함수 이름만 작성하세요. 괄호는 작성하지 않습니다.",
-    code: "lunch = ['짜장면', '짬뽕', '탕수육']\n\nfor idx, menu in (a)(lunch):\n    print(idx, menu)",
+    question: "인덱스와 요소를 함께 순회하려고 한다. 빈칸에 들어갈 함수 이름만 작성하시오. 괄호는 작성하지 않는다.",
+    code: "lunch = ['짜장면', '짬뽕', '탕수육']\n\nfor idx, menu in _____(lunch):\n    print(idx, menu)",
     answer: "enumerate",
     explanation:
       "enumerate(iterable)는 각 요소와 함께 0부터 시작하는 인덱스를 제공하므로 두 변수로 언패킹할 수 있습니다. 문제에서 괄호를 제외하라고 했으므로 함수 이름만 작성해야 합니다.",
@@ -1031,7 +1031,7 @@ const examStyleQuestions: Question[] = [
     id: "exam-sequence-essay",
     category: "문자열·시퀀스",
     kind: "서술형",
-    question: "시퀀스형 데이터의 공통 특징과 종류를 비시퀀스형 데이터와 구분하여 100자 이상으로 서술하세요.",
+    question: "시퀀스형 데이터의 공통 특징과 종류를 비시퀀스형 데이터와 구분하여 100자 이상으로 서술하시오.",
     answer:
       "시퀀스형 데이터는 여러 값을 정해진 순서로 저장하여 인덱싱, 슬라이싱, 길이 확인과 같은 공통 연산을 적용할 수 있다. 문자열, 리스트, 튜플, range가 대표적인 시퀀스형이다. 순서가 있다는 말은 자동으로 정렬되어 있다는 뜻이 아니다. 딕셔너리는 키로 값을 조회하고 집합은 중복 없는 원소를 다루므로 둘 다 비시퀀스형이다.",
     explanation:
@@ -1041,7 +1041,7 @@ const examStyleQuestions: Question[] = [
     id: "exam-comprehension-error-essay",
     category: "제어문",
     kind: "서술형",
-    question: "다음 코드의 실행 결과와 그 이유를 100자 이상으로 서술하세요. 오류가 발생한다면 오류 종류와 발생 원인을 모두 포함하세요.",
+    question: "다음 코드의 실행 결과와 그 이유를 100자 이상으로 서술하시오. 오류가 발생한다면 오류 종류와 발생 원인을 모두 포함하시오.",
     code: "documents = ['java', 'python', 's5g4', 's5g2', 'spring', 'django', 'extra']\npython_class = [documents[i + 1] for i in range(0, len(documents), 2)]\n\nprint(python_class)",
     answer:
       "리스트 컴프리헨션을 계산하는 도중 IndexError가 발생하므로 print 문은 실행되지 않는다. range(0, 7, 2)는 0, 2, 4, 6을 만들고 각 값에 1을 더해 documents[1], documents[3], documents[5], documents[7]에 접근한다. 마지막 documents[7]은 길이가 7인 리스트의 유효 인덱스 0부터 6을 벗어나기 때문에 오류가 발생한다.",
@@ -1068,8 +1068,8 @@ const examStyleQuestions: Question[] = [
     id: "exam-args-blank",
     category: "함수·스코프",
     kind: "단답형",
-    question: "여러 개의 위치 인자를 하나의 튜플로 받으려 합니다. (a)에 들어갈 매개변수 표현을 정확히 작성하세요.",
-    code: "def total((a)):\n    return sum(numbers)\n\nprint(total(1, 2, 3))",
+    question: "여러 개의 위치 인자를 하나의 튜플로 받으려고 한다. 빈칸에 들어갈 매개변수 표현을 정확히 작성하시오.",
+    code: "def total(_____):\n    return sum(numbers)\n\nprint(total(1, 2, 3))",
     answer: "*numbers",
     explanation:
       "매개변수 이름 앞의 별표 하나는 전달된 여러 위치 인자를 튜플로 패킹합니다. 별표를 생략하면 여러 인자를 하나의 매개변수로 받을 수 없습니다.",
@@ -1078,8 +1078,8 @@ const examStyleQuestions: Question[] = [
     id: "exam-zip-blank",
     category: "제어문",
     kind: "단답형",
-    question: "두 리스트의 같은 위치 요소를 짝지어 순회하려 합니다. (a)에 들어갈 함수 이름만 작성하세요.",
-    code: "names = ['Alice', 'Bob']\nscores = [90, 80]\n\nfor name, score in (a)(names, scores):\n    print(name, score)",
+    question: "두 리스트의 같은 위치 요소를 짝지어 순회하려고 한다. 빈칸에 들어갈 함수 이름만 작성하시오.",
+    code: "names = ['Alice', 'Bob']\nscores = [90, 80]\n\nfor name, score in _____(names, scores):\n    print(name, score)",
     answer: "zip",
     explanation:
       "zip은 여러 반복 가능한 객체에서 같은 위치의 요소를 튜플로 묶어 제공합니다. 여기서는 각 튜플이 name과 score로 언패킹됩니다.",
@@ -1088,7 +1088,7 @@ const examStyleQuestions: Question[] = [
     id: "exam-class-instance-trace",
     category: "OOP",
     kind: "단답형",
-    question: "다음 코드가 출력하는 두 숫자를 공백으로 구분해 정확히 작성하세요.",
+    question: "다음 코드가 출력하는 두 숫자를 공백으로 구분하여 정확히 작성하시오.",
     code: "class Student:\n    count = 0\n\n    def __init__(self):\n        Student.count += 1\n        self.count = 10\n\na = Student()\nb = Student()\nprint(Student.count, a.count)",
     answer: "2 10",
     explanation:
@@ -1100,8 +1100,8 @@ const examStyleQuestions: Question[] = [
     kind: "객관식",
     question: "다음 코드의 출력 순서로 옳은 것은?",
     code: "try:\n    value = int('10')\nexcept ValueError:\n    print('except')\nelse:\n    print('else')\nfinally:\n    print('finally')",
-    choices: ["except", "else", "finally", "else finally"],
-    answer: "else finally",
+    choices: ["except", "else", "finally", "else → finally"],
+    answer: "else → finally",
     explanation:
       "int('10')은 정상적으로 10을 반환하므로 except는 실행되지 않고 else가 실행됩니다. finally는 예외 발생 여부와 관계없이 마지막에 실행됩니다.",
   },
@@ -1125,7 +1125,7 @@ const examStyleQuestions: Question[] = [
     id: "exam-short-circuit-side-effect",
     category: "연산자·형변환",
     kind: "단답형",
-    question: "다음 코드가 실제로 출력하는 내용을 순서대로 작성하세요.",
+    question: "다음 코드가 출력하는 세 값을 공백으로 구분하여 순서대로 작성하시오.",
     code: "def check():\n    print('호출')\n    return False\n\nprint(True or check())\nprint(False or check())",
     answer: "True 호출 False",
     explanation:
@@ -1154,7 +1154,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-return-single-tuple",
     category: "함수·스코프",
     kind: "단답형",
-    question: "다음 함수가 반환하는 값을 Python 표현식 그대로 작성하세요.",
+    question: "다음 함수가 반환하는 값을 Python 표현식 그대로 작성하시오.",
     code: "def wrap(value):\n    return value,\n\nprint(wrap(7))",
     answer: "(7,)",
     explanation:
@@ -1164,7 +1164,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-tuple-packing",
     category: "문자열·시퀀스",
     kind: "단답형",
-    question: "괄호가 생략된 튜플 패킹의 출력 결과를 작성하세요.",
+    question: "괄호가 생략된 튜플 패킹을 고려하여 출력 결과를 정확히 작성하시오.",
     code: "data = 1, 'hello', 3.14\nprint(type(data).__name__, data)",
     answer: "tuple (1, 'hello', 3.14)",
     explanation:
@@ -1210,7 +1210,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-builtin-shadow",
     category: "함수·스코프",
     kind: "단답형",
-    question: "마지막 줄을 실행할 때 발생하는 예외 클래스 이름을 작성하세요.",
+    question: "마지막 줄을 실행할 때 발생하는 예외 클래스 이름만 정확히 작성하시오.",
     code: "print(sum([1, 2, 3]))\nsum = 5\nprint(sum([1, 2, 3]))",
     answer: "TypeError",
     explanation:
@@ -1220,7 +1220,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-setdefault",
     category: "자료구조",
     kind: "단답형",
-    question: "다음 코드가 출력하는 딕셔너리를 작성하세요.",
+    question: "다음 코드가 출력하는 딕셔너리를 Python 표현식 그대로 작성하시오.",
     code: "data = {'name': 'Alice'}\ndata.setdefault('country', 'KOREA')\nprint(data)",
     answer: "{'name': 'Alice', 'country': 'KOREA'}",
     explanation:
@@ -1230,7 +1230,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-dict-update",
     category: "자료구조",
     kind: "단답형",
-    question: "update 실행 후 딕셔너리의 값을 작성하세요.",
+    question: "update 실행 후 딕셔너리의 값을 Python 표현식 그대로 작성하시오.",
     code: "data = {'name': 'Alice', 'age': 20}\ndata.update({'name': 'Jane', 'city': 'Seoul'})\nprint(data)",
     answer: "{'name': 'Jane', 'age': 20, 'city': 'Seoul'}",
     explanation:
@@ -1240,7 +1240,7 @@ const verifiedFundamentalQuestions: Question[] = [
     id: "verified-dict-pop",
     category: "자료구조",
     kind: "단답형",
-    question: "두 print가 출력하는 값을 순서대로 작성하세요.",
+    question: "두 print 문이 출력하는 값을 순서대로 작성하시오.",
     code: "data = {'name': 'Alice', 'age': 25}\nprint(data.pop('age'))\nprint(data)",
     answer: "25 {'name': 'Alice'}",
     explanation:
@@ -1294,7 +1294,7 @@ const questionPolish: Record<string, Partial<Question>> = {
       "a와 b는 내용이 [1, 2]로 같기 때문에 a == b는 True입니다. 하지만 각각 별도로 생성된 리스트이므로 a is b는 False입니다. c = a는 새로운 리스트를 복사한 것이 아니라 a의 참조를 c에 할당한 것이므로 a is c는 True입니다.",
   },
   "op-short-2": {
-    question: "다음 코드를 실행했을 때 실제로 출력되는 내용을 작성하세요.",
+    question: "다음 코드를 실행했을 때 실제로 출력되는 내용을 정확히 작성하시오.",
     explanation:
       "and는 왼쪽 값이 falsy이면 오른쪽을 평가하지 않습니다. 따라서 check()는 호출되지 않아 '실행'은 출력되지 않고, False and ... 표현식의 결과인 False만 print에 전달됩니다. 함수 호출이나 연산이 생략될 수 있다는 점이 단락 평가의 핵심입니다.",
   },
@@ -1319,12 +1319,12 @@ const questionPolish: Record<string, Partial<Question>> = {
       "a[:]는 바깥 리스트만 새로 생성하는 얕은 복사입니다. 따라서 a is b는 False지만, 두 리스트 안에 들어 있던 중첩 리스트 객체는 그대로 공유됩니다. 내부 리스트를 수정하면 양쪽에서 변화가 보일 수 있으며, 중첩 객체까지 분리하려면 copy.deepcopy()를 검토해야 합니다.",
   },
   "flow-break-else": {
-    question: "다음 코드를 실행했을 때 출력되는 내용을 작성하세요.",
+    question: "다음 코드를 실행했을 때 출력되는 내용을 정확히 작성하시오.",
     explanation:
       "for문의 else는 반복문이 break로 중단되지 않고 정상적으로 끝났을 때 실행됩니다. 목록에는 짝수가 없어 break가 한 번도 실행되지 않으므로 반복이 끝난 뒤 '완료'가 출력됩니다. else가 단순히 if와 짝을 이루는 것이 아니라 반복문의 정상 종료 여부와 연결된다는 점이 핵심입니다.",
   },
   "func-1": {
-    question: "다음 코드가 순서대로 출력하는 두 값을 작성하세요.",
+    question: "다음 코드가 순서대로 출력하는 두 값을 정확히 작성하시오.",
     explanation:
       "change 함수 안의 number = 25는 새로운 지역 변수를 만듭니다. 함수 내부에서는 가장 가까운 지역 이름을 찾아 25를 출력하지만, global 선언이 없으므로 전역 number에는 대입이 일어나지 않습니다. 함수 호출이 끝난 후 전역 number는 여전히 10입니다.",
   },
@@ -1339,7 +1339,7 @@ const questionPolish: Record<string, Partial<Question>> = {
       "Python은 먼저 현재 함수의 Local 영역을 확인하고, 중첩 함수라면 바깥 함수의 Enclosed 영역을 찾습니다. 이후 모듈 수준의 Global 영역, 마지막으로 len이나 print가 있는 Built-in 영역을 탐색합니다. 이 Local → Enclosed → Global → Built-in 순서의 머리글자를 LEGB라고 부릅니다.",
   },
   "func-nonlocal": {
-    question: "다음 코드의 출력 결과를 작성하세요.",
+    question: "다음 코드를 실행했을 때 출력되는 결과를 정확히 작성하시오.",
     explanation:
       "inner의 x += 1은 값을 읽는 동시에 다시 대입하는 연산입니다. nonlocal x가 있으므로 새 지역 변수를 만드는 대신 가장 가까운 바깥 함수 outer의 x를 수정합니다. 전역 변수를 대상으로 하는 global과 적용 범위가 다릅니다.",
   },
@@ -1349,7 +1349,7 @@ const questionPolish: Record<string, Partial<Question>> = {
       "map은 입력 전체를 즉시 계산한 리스트가 아니라, 다음 값이 요청될 때 함수를 적용하는 iterator를 반환합니다. 이런 지연 평가는 불필요한 계산과 메모리 사용을 줄일 수 있지만 한 번 소비한 iterator를 다시 순회하면 값이 남아 있지 않을 수 있습니다. 여러 번 사용할 결과라면 list(map(...))처럼 명시적으로 저장할 수 있습니다.",
   },
   "data-1": {
-    question: "다음 코드에서 result와 numbers에 저장된 값을 순서대로 작성하세요.",
+    question: "다음 코드에서 result와 numbers에 저장된 값을 순서대로 작성하시오.",
     explanation:
       "append(2)는 numbers 객체 자체에 요소를 추가하는 원본 변경 메서드입니다. 이 메서드의 목적은 리스트 변경이므로 별도의 결과 리스트를 반환하지 않고 None을 반환합니다. 따라서 result는 None이고 numbers는 [3, 1, 4, 2]가 됩니다.",
   },
@@ -1359,12 +1359,12 @@ const questionPolish: Record<string, Partial<Question>> = {
       "sorted(numbers)는 전달받은 iterable을 기준으로 정렬된 새 리스트를 반환하며 원본 리스트를 변경하지 않습니다. 반면 numbers.sort()는 해당 리스트 자체를 정렬하고 None을 반환합니다. 원본 보존 여부와 반환값을 함께 구분해야 합니다.",
   },
   "data-copy-1": {
-    question: "다음 코드를 실행한 뒤 원본 a의 값을 작성하세요.",
+    question: "다음 코드를 실행한 뒤 원본 a의 값을 Python 표현식 그대로 작성하시오.",
     explanation:
       "a.copy()는 바깥 리스트만 복사하므로 a와 b는 서로 다른 최상위 리스트입니다. 하지만 첫 번째 요소인 내부 리스트 [1, 2]는 두 리스트가 동일한 객체를 공유합니다. b[0].append(9)는 공유된 내부 객체를 변경하므로 a에서도 9가 추가된 결과가 관찰됩니다.",
   },
   "data-method-chain": {
-    question: "다음 코드에서 result에 저장되는 값을 작성하세요.",
+    question: "다음 코드에서 result에 저장되는 값을 정확히 작성하시오.",
     explanation:
       "numbers.copy()는 새로운 리스트를 반환하므로 그 객체에서 sort()가 호출됩니다. sort()는 복사된 리스트를 정상적으로 정렬하지만 반환값은 None입니다. 메서드 체이닝에서는 각 메서드가 무엇을 반환하는지 확인해야 하며, 원본이 바뀌었는지와 result에 무엇이 들어가는지는 별개의 문제입니다.",
   },
@@ -1389,7 +1389,7 @@ const questionPolish: Record<string, Partial<Question>> = {
       "Python은 클래스마다 Method Resolution Order, 즉 MRO라는 일관된 탐색 순서를 계산합니다. super()는 단순히 코드에 적힌 '직계 부모 하나'를 가리키는 것이 아니라 현재 클래스 다음의 MRO 항목으로 호출을 위임합니다. 다중 상속에서 모든 클래스가 협력적으로 super()를 사용해야 초기화 사슬이 끊기지 않습니다.",
   },
   "except-1": {
-    question: "다음 코드가 순서대로 출력하는 두 문구를 작성하세요.",
+    question: "다음 코드가 순서대로 출력하는 두 문구를 정확히 작성하시오.",
     explanation:
       "int('3.5')는 소수점이 포함된 문자열을 정수 리터럴로 해석할 수 없어 ValueError를 발생시킵니다. 해당 except가 예외를 처리해 '변환 오류'를 출력하고, finally는 정상 실행 여부와 관계없이 이어서 '종료'를 출력합니다. 예외가 처리되더라도 finally는 생략되지 않습니다.",
   },
@@ -1635,6 +1635,12 @@ export default function Home() {
 
   if (view === "exam") {
     const question = questions[current];
+    const questionPageSize = 20;
+    const questionPage = Math.floor(current / questionPageSize);
+    const questionPageCount = Math.ceil(questions.length / questionPageSize);
+    const questionPageStart = questionPage * questionPageSize;
+    const questionPageEnd = Math.min(questionPageStart + questionPageSize, questions.length);
+    const visibleQuestions = questions.slice(questionPageStart, questionPageEnd);
     const isRevealed = revealedIds.includes(question.id);
     const currentAnswer = answers[question.id] ?? "";
     const currentCorrect =
@@ -1730,14 +1736,14 @@ export default function Home() {
                       [question.id]: event.target.value,
                     }))
                   }
-                  placeholder="출력 결과를 입력하세요"
+                  placeholder="정답만 정확히 입력하세요"
                   onKeyDown={(event) => {
                     if (event.key === "Enter" && current < questions.length - 1) {
                       setCurrent(current + 1);
                     }
                   }}
                 />
-                <span>대소문자·띄어쓰기·따옴표를 포함해 정답만 정확히 입력하세요.</span>
+                <span>출력 형식, 대소문자, 띄어쓰기와 따옴표까지 정답과 동일하게 작성하세요.</span>
               </div>
             )}
 
@@ -1809,21 +1815,47 @@ export default function Home() {
             <div className="progress">
               <i style={{ width: `${(answeredCount / questions.length) * 100}%` }} />
             </div>
-            <div className="number-grid">
-              {questions.map((item, index) => (
+            {questionPageCount > 1 && (
+              <div className="number-pager" aria-label="문제 번호 구간 이동">
                 <button
-                  key={item.id}
-                  className={[
-                    index === current ? "current" : "",
-                    answers[item.id]?.trim() ? "answered" : "",
-                    revealedIds.includes(item.id) ? "revealed" : "",
-                    marked.includes(item.id) ? "marked" : "",
-                  ].join(" ")}
-                  onClick={() => setCurrent(index)}
+                  type="button"
+                  aria-label="이전 문제 구간"
+                  disabled={questionPage === 0}
+                  onClick={() => setCurrent(Math.max(0, questionPageStart - questionPageSize))}
                 >
-                  {index + 1}
+                  ←
                 </button>
-              ))}
+                <strong>
+                  {questionPageStart + 1}–{questionPageEnd} <span>/ {questions.length}</span>
+                </strong>
+                <button
+                  type="button"
+                  aria-label="다음 문제 구간"
+                  disabled={questionPage === questionPageCount - 1}
+                  onClick={() => setCurrent(questionPageEnd)}
+                >
+                  →
+                </button>
+              </div>
+            )}
+            <div className="number-grid">
+              {visibleQuestions.map((item, visibleIndex) => {
+                const index = questionPageStart + visibleIndex;
+                return (
+                  <button
+                    key={item.id}
+                    className={[
+                      index === current ? "current" : "",
+                      answers[item.id]?.trim() ? "answered" : "",
+                      revealedIds.includes(item.id) ? "revealed" : "",
+                      marked.includes(item.id) ? "marked" : "",
+                    ].join(" ")}
+                    onClick={() => setCurrent(index)}
+                  >
+                    {index + 1}
+                  </button>
+                );
+              })}
             </div>
             <div className="legend">
               <span><i className="dot answered" />답변 완료</span>
@@ -1988,7 +2020,7 @@ export default function Home() {
     <main>
       <header className="home-header">
         <div className="brand"><span>Py</span>READY</div>
-        <span className="local-save-status">이 브라우저에 자동 저장</span>
+        <span className="local-save-status">오답 기록과 북마크는 이 브라우저에 자동 저장됩니다.</span>
       </header>
 
       <section className="hero">

@@ -347,6 +347,11 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
 .answer-sheet > div:first-child strong { color: var(--green); font-size: 21px; }
 .progress { height: 5px; margin: 13px 0 22px; background: #ebe8e1; border-radius: 10px; overflow: hidden; }
 .progress i { display: block; height: 100%; background: var(--green); }
+.number-pager { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; gap: 8px; margin: -4px 0 13px; }
+.number-pager strong { text-align: center; color: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+.number-pager strong span { color: var(--muted); font-weight: 650; }
+.number-pager button { width: 32px; height: 28px; border: 1px solid var(--line); border-radius: 7px; background: white; color: var(--green); font-weight: 900; }
+.number-pager button:disabled { color: #c9c5bc; background: #f6f4ef; cursor: default; }
 .number-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
 .number-grid button { aspect-ratio: 1; border: 1px solid var(--line); border-radius: 7px; background: white; font-size: 12px; font-weight: 800; position: relative; }
 .number-grid button.answered { background: #dceee8; color: var(--green); border-color: #b3d2c8; }
