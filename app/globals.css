@@ -31,21 +31,22 @@ button { cursor: pointer; }
 }
 .home-header-actions { display: flex; align-items: center; gap: 14px; }
 .home-header .header-pdf-download {
-  min-height: 40px;
-  padding: 0 14px;
+  min-height: 44px;
+  padding: 0 17px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   border-radius: 9px;
-  background: var(--green);
-  color: white;
-  font-size: 13px;
+  border: 1px solid #bad259;
+  background: var(--lime);
+  color: var(--green-dark);
+  font-size: 14px;
   font-weight: 850;
   text-decoration: none;
-  box-shadow: 0 5px 14px rgba(11,107,87,.16);
+  box-shadow: 0 6px 16px rgba(8,76,64,.2);
 }
-.home-header .header-pdf-download:hover { background: var(--green-dark); }
-.home-header .header-pdf-download span { color: var(--lime); font-size: 16px; }
+.home-header .header-pdf-download:hover { background: #cbe766; transform: translateY(-1px); }
+.home-header .header-pdf-download span { color: var(--green-dark); font-size: 17px; }
 
 .home-header, .simple-header, .exam-header {
   height: 76px;
@@ -460,6 +461,45 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
 .home-header nav, .hero, .prep-strip, .progress-section { display: none; }
 .home-header { height: 64px; background: var(--white); }
 .practice-section { min-height: calc(100vh - 64px); padding-top: 58px; }
+.summary-resource-banner {
+  width: 100%;
+  margin-bottom: 28px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  border: 2px solid var(--green);
+  border-radius: 14px;
+  background: #e8f2ee;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(8,76,64,.1);
+}
+.summary-resource-banner:hover { background: #deeee8; transform: translateY(-1px); }
+.summary-resource-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--green-dark);
+  color: var(--lime);
+  font-size: 12px;
+  font-weight: 900;
+}
+.summary-resource-copy { display: flex; flex-direction: column; gap: 4px; }
+.summary-resource-copy small { color: var(--green); font-size: 12px; font-weight: 800; }
+.summary-resource-copy strong { font-size: 17px; }
+.summary-resource-action {
+  padding: 11px 14px;
+  border-radius: 9px;
+  background: var(--green);
+  color: white;
+  font-size: 13px;
+  font-weight: 850;
+}
+.summary-resource-action b { margin-left: 8px; color: var(--lime); }
 .practice-section .section-heading { margin-bottom: 24px; }
 .practice-section .section-heading h2 { font-size: clamp(30px, 4vw, 44px); }
 .study-summary {
@@ -517,8 +557,10 @@ footer { display: none; }
   .hero h1 { font-size: 49px; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
   .home-header-actions { gap: 8px; }
-  .home-header .header-pdf-download { min-height: 38px; padding: 0 11px; font-size: 12px; }
+  .home-header .header-pdf-download { min-height: 40px; padding: 0 11px; font-size: 12px; }
   .local-save-status { display: none; }
+  .summary-resource-banner { grid-template-columns: auto 1fr; padding: 16px; }
+  .summary-resource-action { grid-column: 1 / -1; text-align: center; }
   .exam-facts { gap: 13px; }
   .exam-facts div { padding-right: 12px; }
   .hero-visual { height: 415px; }

@@ -2145,7 +2145,7 @@ export default function Home() {
             href={`${import.meta.env.BASE_URL}downloads/python-subject-exam-core-summary.pdf`}
             download="Python_과목평가_핵심정리.pdf"
           >
-            <span aria-hidden="true">↓</span> 핵심 정리 PDF
+            <span aria-hidden="true">↓</span> 요점정리 PDF 받기
           </a>
           <span className="local-save-status">오답·북마크 자동 저장</span>
         </div>
@@ -2206,6 +2206,19 @@ export default function Home() {
       </section>
 
       <section className="practice-section" id="practice">
+        <a
+          className="summary-resource-banner"
+          href={`${import.meta.env.BASE_URL}downloads/python-subject-exam-core-summary.pdf`}
+          download="Python_과목평가_핵심정리.pdf"
+        >
+          <span className="summary-resource-icon" aria-hidden="true">PDF</span>
+          <span className="summary-resource-copy">
+            <small>시험 전 핵심 개념을 한 번에 점검하세요</small>
+            <strong>Python 과목평가 핵심 정리</strong>
+          </span>
+          <span className="summary-resource-action">무료 다운로드 <b aria-hidden="true">↓</b></span>
+        </a>
+
         <div className="section-heading">
           <div>
             <span className="section-kicker">PYREADY · {questionBank.length}문항</span>
