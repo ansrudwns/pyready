@@ -878,7 +878,7 @@ const conceptQuestions: Question[] = [
 
 const generatedQuestions: Question[] = [
   ...[
-    [23, 5], [31, 6], [18, 4], [27, 7], [42, 8], [35, 6],
+    [31, 6],
   ].map(([a, b], index): Question => ({
     id: `generated-op-${index}`,
     category: "연산자·형변환",
@@ -889,8 +889,7 @@ const generatedQuestions: Question[] = [
     explanation: `//와 %를 먼저 계산합니다. ${a} // ${b}는 ${Math.floor(a / b)}, 나머지는 ${a % b}이므로 결과는 ${Math.floor(a / b) + (a % b) * 2}입니다.`,
   })),
   ...[
-    ["algorithm", 1, 3], ["pythonista", 0, 2], ["developer", 2, 2],
-    ["ssafycoding", 1, 2], ["datastructure", 0, 3],
+    ["ssafycoding", 1, 2],
   ].map(([text, start, step], index): Question => {
     const value = String(text);
     const begin = Number(start);
@@ -906,7 +905,7 @@ const generatedQuestions: Question[] = [
     };
   }),
   ...[
-    [8, 2], [10, 3], [12, 4], [9, 2], [11, 3], [13, 5],
+    [10, 3],
   ].map(([end, divisor], index): Question => {
     const answer = Array.from({ length: end - 1 }, (_, i) => i + 1)
       .filter((value) => value % divisor !== 0)
@@ -922,8 +921,7 @@ const generatedQuestions: Question[] = [
     };
   }),
   ...[
-    [[1, 4, 7, 8], 3], [[2, 3, 5, 6], 4], [[1, 2, 9, 10], 2],
-    [[3, 4, 5, 8], 5], [[1, 6, 7, 9], 2],
+    [[3, 4, 5, 8], 5],
   ].map(([rawValues, factor], index): Question => {
     const values = rawValues as number[];
     const multiplier = factor as number;
@@ -939,9 +937,6 @@ const generatedQuestions: Question[] = [
     };
   }),
   ...[
-    ["red", "blue", "red", "green", "red"],
-    ["A", "B", "A", "C", "B"],
-    ["cat", "dog", "dog", "cat", "dog"],
     ["python", "java", "python", "js", "python"],
   ].map((values, index): Question => {
     const target = values[0];
@@ -957,9 +952,6 @@ const generatedQuestions: Question[] = [
     };
   }),
   ...[
-    ["ValueError", "int('hello')"],
-    ["ZeroDivisionError", "10 / 0"],
-    ["KeyError", "{}['missing']"],
     ["IndexError", "[1, 2][5]"],
   ].map(([error, expression], index): Question => ({
     id: `generated-exception-${index}`,
@@ -971,7 +963,7 @@ const generatedQuestions: Question[] = [
     explanation: `${expression} 표현식은 ${error}를 발생시킵니다.`,
   })),
   ...[
-    ["Circle", 3, 6], ["Counter", 5, 7], ["Score", 10, 15],
+    ["Score", 10, 15],
   ].map(([name, parentValue, childValue], index): Question => ({
     id: `generated-oop-${index}`,
     category: "OOP",
@@ -981,6 +973,164 @@ const generatedQuestions: Question[] = [
     answer: String(childValue),
     explanation: `인스턴스에 해당 속성이 없으므로 자식 클래스에서 먼저 value를 찾아 ${childValue}를 출력합니다.`,
   })),
+];
+
+const examStyleQuestions: Question[] = [
+  {
+    id: "exam-dict-theory",
+    category: "자료구조",
+    kind: "객관식",
+    question: "다음 중 딕셔너리에 대한 설명으로 옳지 않은 것은?",
+    choices: [
+      "시퀀스 자료형이다.",
+      "키를 이용해 대응하는 값을 얻을 수 있다.",
+      "하나의 딕셔너리에서 키는 중복될 수 없다.",
+      "get으로 없는 키를 조회하고 기본값을 생략하면 None을 반환한다.",
+    ],
+    answer: "시퀀스 자료형이다.",
+    explanation:
+      "딕셔너리는 키-값 쌍으로 구성되는 비시퀀스 자료형입니다. 삽입 순서를 보존하는 것과 인덱스 순서로 접근하는 시퀀스라는 것은 다른 개념입니다.",
+  },
+  {
+    id: "exam-nested-loop-matrix",
+    category: "제어문",
+    kind: "객관식",
+    question: "다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?",
+    code: "numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\nfor i in range(len(numbers)):\n    for j in range(len(numbers)):\n        print(numbers[j][i], end=' ')",
+    choices: [
+      "1 2 3 4 5 6 7 8 9",
+      "1 2 3 6 9 8 7 5 4",
+      "1 4 7 2 5 8 3 6 9",
+      "9 8 7 6 5 4 3 2 1",
+    ],
+    answer: "1 4 7 2 5 8 3 6 9",
+    explanation:
+      "바깥 반복의 i가 열 인덱스를 고정하고 안쪽 반복의 j가 행을 이동합니다. 따라서 각 행을 읽는 것이 아니라 첫 번째 열, 두 번째 열, 세 번째 열 순서로 출력합니다.",
+  },
+  {
+    id: "exam-animal-output",
+    category: "OOP",
+    kind: "단답형",
+    question: "다음 코드를 실행했을 때 출력되는 결과만 정확히 작성하세요.",
+    code: "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def walk(self):\n        print('걷는다!')\n\n    def eat(self):\n        print(f'{self.name}!먹는다!')\n\ndog = Animal('dog')\ndog.walk()",
+    answer: "걷는다!",
+    explanation:
+      "dog.walk()은 walk 메서드만 호출합니다. eat 메서드는 정의되어 있지만 호출되지 않으므로 이름을 포함한 문장은 출력되지 않습니다.",
+  },
+  {
+    id: "exam-enumerate-blank",
+    category: "제어문",
+    kind: "단답형",
+    question: "인덱스와 요소를 함께 순회하려고 합니다. (a)에 들어갈 함수 이름만 작성하세요. 괄호는 작성하지 않습니다.",
+    code: "lunch = ['짜장면', '짬뽕', '탕수육']\n\nfor idx, menu in (a)(lunch):\n    print(idx, menu)",
+    answer: "enumerate",
+    explanation:
+      "enumerate(iterable)는 각 요소와 함께 0부터 시작하는 인덱스를 제공하므로 두 변수로 언패킹할 수 있습니다. 문제에서 괄호를 제외하라고 했으므로 함수 이름만 작성해야 합니다.",
+  },
+  {
+    id: "exam-sequence-essay",
+    category: "문자열·시퀀스",
+    kind: "서술형",
+    question: "시퀀스형 데이터의 공통 특징과 종류를 비시퀀스형 데이터와 구분하여 100자 이상으로 서술하세요.",
+    answer:
+      "시퀀스형 데이터는 여러 값을 정해진 순서로 저장하여 인덱싱, 슬라이싱, 길이 확인과 같은 공통 연산을 적용할 수 있다. 문자열, 리스트, 튜플, range가 대표적인 시퀀스형이다. 순서가 있다는 말은 자동으로 정렬되어 있다는 뜻이 아니다. 딕셔너리는 키로 값을 조회하고 집합은 중복 없는 원소를 다루므로 둘 다 비시퀀스형이다.",
+    explanation:
+      "핵심은 순서 보장과 정렬을 구분하고, 시퀀스의 공통 연산과 대표 자료형을 제시하며, 딕셔너리와 집합을 시퀀스에 포함하지 않는 것입니다.",
+  },
+  {
+    id: "exam-comprehension-error-essay",
+    category: "제어문",
+    kind: "서술형",
+    question: "다음 코드의 실행 결과와 그 이유를 100자 이상으로 서술하세요. 오류가 발생한다면 오류 종류와 발생 원인을 모두 포함하세요.",
+    code: "documents = ['java', 'python', 's5g4', 's5g2', 'spring', 'django', 'extra']\npython_class = [documents[i + 1] for i in range(0, len(documents), 2)]\n\nprint(python_class)",
+    answer:
+      "리스트 컴프리헨션을 계산하는 도중 IndexError가 발생하므로 print 문은 실행되지 않는다. range(0, 7, 2)는 0, 2, 4, 6을 만들고 각 값에 1을 더해 documents[1], documents[3], documents[5], documents[7]에 접근한다. 마지막 documents[7]은 길이가 7인 리스트의 유효 인덱스 0부터 6을 벗어나기 때문에 오류가 발생한다.",
+    explanation:
+      "오류 이름만 쓰는 것으로는 부족합니다. range가 만드는 마지막 값, i + 1의 결과, 리스트의 유효 인덱스 범위, print가 실행되지 않는다는 점까지 연결해야 합니다.",
+  },
+  {
+    id: "exam-dict-access-error",
+    category: "자료구조",
+    kind: "객관식",
+    question: "빈 딕셔너리 data에서 없는 키 'score'를 조회할 때의 설명으로 옳은 것은?",
+    code: "data = {}",
+    choices: [
+      "data['score']와 data.get('score') 모두 None을 반환한다.",
+      "data['score']는 KeyError가 발생하고 data.get('score')는 None을 반환한다.",
+      "data['score']는 None을 반환하고 data.get('score')는 KeyError가 발생한다.",
+      "두 표현 모두 빈 문자열을 반환한다.",
+    ],
+    answer: "data['score']는 KeyError가 발생하고 data.get('score')는 None을 반환한다.",
+    explanation:
+      "대괄호 조회는 키가 반드시 존재해야 하므로 KeyError가 발생합니다. get은 키가 없을 때 예외 대신 지정한 기본값을 반환하며, 기본값을 생략하면 None입니다.",
+  },
+  {
+    id: "exam-args-blank",
+    category: "함수·스코프",
+    kind: "단답형",
+    question: "여러 개의 위치 인자를 하나의 튜플로 받으려 합니다. (a)에 들어갈 매개변수 표현을 정확히 작성하세요.",
+    code: "def total((a)):\n    return sum(numbers)\n\nprint(total(1, 2, 3))",
+    answer: "*numbers",
+    explanation:
+      "매개변수 이름 앞의 별표 하나는 전달된 여러 위치 인자를 튜플로 패킹합니다. 별표를 생략하면 여러 인자를 하나의 매개변수로 받을 수 없습니다.",
+  },
+  {
+    id: "exam-zip-blank",
+    category: "제어문",
+    kind: "단답형",
+    question: "두 리스트의 같은 위치 요소를 짝지어 순회하려 합니다. (a)에 들어갈 함수 이름만 작성하세요.",
+    code: "names = ['Alice', 'Bob']\nscores = [90, 80]\n\nfor name, score in (a)(names, scores):\n    print(name, score)",
+    answer: "zip",
+    explanation:
+      "zip은 여러 반복 가능한 객체에서 같은 위치의 요소를 튜플로 묶어 제공합니다. 여기서는 각 튜플이 name과 score로 언패킹됩니다.",
+  },
+  {
+    id: "exam-class-instance-trace",
+    category: "OOP",
+    kind: "단답형",
+    question: "다음 코드가 출력하는 두 숫자를 공백으로 구분해 정확히 작성하세요.",
+    code: "class Student:\n    count = 0\n\n    def __init__(self):\n        Student.count += 1\n        self.count = 10\n\na = Student()\nb = Student()\nprint(Student.count, a.count)",
+    answer: "2 10",
+    explanation:
+      "생성자가 두 번 호출되어 클래스 변수 Student.count는 2가 됩니다. a.count는 a 인스턴스에 직접 저장된 인스턴스 변수 10을 먼저 찾습니다.",
+  },
+  {
+    id: "exam-try-else-finally",
+    category: "예외처리",
+    kind: "객관식",
+    question: "다음 코드의 출력 순서로 옳은 것은?",
+    code: "try:\n    value = int('10')\nexcept ValueError:\n    print('except')\nelse:\n    print('else')\nfinally:\n    print('finally')",
+    choices: ["except", "else", "finally", "else finally"],
+    answer: "else finally",
+    explanation:
+      "int('10')은 정상적으로 10을 반환하므로 except는 실행되지 않고 else가 실행됩니다. finally는 예외 발생 여부와 관계없이 마지막에 실행됩니다.",
+  },
+  {
+    id: "exam-shallow-copy-trace",
+    category: "자료구조",
+    kind: "객관식",
+    question: "다음 코드의 출력 결과로 옳은 것은?",
+    code: "original = [[1, 2], [3, 4]]\ncopied = original[:]\ncopied[0].append(9)\nprint(original)",
+    choices: [
+      "[[1, 2], [3, 4]]",
+      "[[1, 2, 9], [3, 4]]",
+      "[[1, 2], [3, 4], 9]",
+      "오류가 발생한다.",
+    ],
+    answer: "[[1, 2, 9], [3, 4]]",
+    explanation:
+      "슬라이싱은 바깥 리스트만 새로 만들고 내부 리스트 객체는 공유합니다. copied[0]과 original[0]이 같은 내부 리스트를 가리키므로 append의 변경이 original에서도 보입니다.",
+  },
+  {
+    id: "exam-short-circuit-side-effect",
+    category: "연산자·형변환",
+    kind: "단답형",
+    question: "다음 코드가 실제로 출력하는 내용을 순서대로 작성하세요.",
+    code: "def check():\n    print('호출')\n    return False\n\nprint(True or check())\nprint(False or check())",
+    answer: "True 호출 False",
+    explanation:
+      "첫 번째 or는 왼쪽 True만으로 결과가 결정되어 check를 호출하지 않습니다. 두 번째 or는 왼쪽이 False이므로 check를 호출해 '호출'을 출력하고, 반환값 False가 바깥 print로 출력됩니다.",
+  },
 ];
 
 const verifiedFundamentalQuestions: Question[] = [
@@ -1263,16 +1413,20 @@ const basicIds = new Set([
   "verified-empty-set", "verified-set-remove-discard", "verified-keyword-order",
   "verified-builtin-shadow", "verified-setdefault", "verified-dict-update",
   "verified-dict-pop", "verified-numeric-methods", "verified-int-string-float",
+  "exam-animal-output", "exam-enumerate-blank", "exam-zip-blank",
 ]);
 const hardIds = new Set([
   "op-is-2", "op-float-1", "seq-slice-copy", "flow-break-else", "func-lebg-1",
   "func-map-lazy", "data-copy-1", "data-method-chain", "data-hash-1", "oop-3",
   "except-order", "except-eafp",
+  "exam-sequence-essay", "exam-comprehension-error-essay", "exam-shallow-copy-trace",
 ]);
 const thinkingIds = new Set([
   "op-short-2", "op-short-3", "op-membership-1", "flow-3", "flow-while-1",
   "func-1", "func-unpack-1", "func-recursion", "data-alias-1", "data-extend",
   "oop-2", "oop-class-instance", "oop-namespace", "except-1", "except-else",
+  "exam-nested-loop-matrix", "exam-dict-access-error", "exam-args-blank",
+  "exam-class-instance-trace", "exam-try-else-finally", "exam-short-circuit-side-effect",
 ]);
 
 const unsupportedIds = new Set(["op-chain-1", "func-nonlocal", "oop-init-return"]);
@@ -1280,6 +1434,7 @@ const rawQuestionBank = [
   ...baseQuestions,
   ...conceptQuestions,
   ...generatedQuestions,
+  ...examStyleQuestions,
   ...verifiedFundamentalQuestions,
 ].filter((question) => !unsupportedIds.has(question.id));
 
@@ -1486,6 +1641,10 @@ export default function Home() {
       question.kind !== "서술형" && isRevealed
         ? checkAnswer(question, currentAnswer)
         : false;
+    const canReveal =
+      question.kind === "서술형"
+        ? currentAnswer.trim().length >= 100
+        : Boolean(currentAnswer.trim());
     const answeredCount = Object.values(answers).filter((answer) => answer.trim()).length;
     return (
       <main className="exam-shell">
@@ -1556,9 +1715,9 @@ export default function Home() {
                       [question.id]: event.target.value,
                     }))
                   }
-                  placeholder="핵심 개념을 한 문장으로 명확하게 작성하세요."
+                  placeholder="문제에서 요구한 핵심 개념, 결과와 이유를 100자 이상으로 작성하세요."
                 />
-                <span>{(answers[question.id] ?? "").length}자 / 최소 10자</span>
+                <span>{(answers[question.id] ?? "").trim().length}자 / 최소 100자</span>
               </div>
             ) : (
               <div className="answer-field">
@@ -1578,7 +1737,7 @@ export default function Home() {
                     }
                   }}
                 />
-                <span>여러 줄은 공백으로 입력해도 되며, 따옴표·딕셔너리 순서는 유연하게 채점합니다.</span>
+                <span>대소문자·띄어쓰기·따옴표를 포함해 정답만 정확히 입력하세요.</span>
               </div>
             )}
 
@@ -1621,7 +1780,7 @@ export default function Home() {
               </button>
               <button
                 className="check-now"
-                disabled={!currentAnswer.trim() || isRevealed}
+                disabled={!canReveal || isRevealed}
                 onClick={() => revealAnswer(question)}
               >
                 {isRevealed
@@ -1998,7 +2157,7 @@ export default function Home() {
         <button className="start-banner" onClick={() => startExam()}>
           <span>
             <b>{selected.length}개 영역 · {configuredQuestionCount}문제 · {minutes === null ? "시간 무제한" : "60분"}</b>
-            준비되었다면 바로 시작하세요. 답안은 자동 저장됩니다.
+            준비되었다면 바로 시작하세요. 오답과 북마크는 이 브라우저에 저장됩니다.
           </span>
           <strong>모의평가 시작하기 →</strong>
         </button>
