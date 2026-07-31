@@ -46,6 +46,7 @@ button { cursor: pointer; }
   font-size: 24px;
   font-weight: 900;
   letter-spacing: -1.2px;
+  white-space: nowrap;
 }
 button.brand { border: 0; background: transparent; color: var(--ink); padding: 0; }
 .brand span {
@@ -259,6 +260,7 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
 .exam-title { display: flex; flex-direction: column; text-align: center; gap: 3px; }
 .exam-title strong { font-size: 15px; }
 .exam-title span { font-size: 11px; color: var(--muted); }
+.mobile-progress { display: none; color: var(--green); font-size: 12px; font-weight: 900; font-variant-numeric: tabular-nums; }
 .timer { display: flex; align-items: center; gap: 12px; padding: 8px 13px; background: #edf5f2; border-radius: 9px; color: var(--green); }
 .timer span { font-size: 10px; font-weight: 800; }
 .timer strong { font-variant-numeric: tabular-nums; }
@@ -271,6 +273,7 @@ footer p, footer > span { font-size: 12px; color: rgba(255,255,255,.55); }
   background: white; border: 1px solid var(--line); border-radius: 15px;
 }
 .question-panel { padding: clamp(26px, 4vw, 52px); min-height: 680px; display: flex; flex-direction: column; }
+.question-panel { scroll-margin-top: 82px; }
 .question-meta { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; font-weight: 750; }
 .category-pill { background: color-mix(in srgb, var(--pill) 14%, white); color: var(--pill); padding: 7px 10px; border-radius: 999px; }
 .difficulty {
@@ -514,6 +517,16 @@ footer { display: none; }
   .history-row i { display: none; }
   footer { align-items: flex-start; flex-direction: column; gap: 12px; }
   .exam-title { display: none; }
+  .mobile-progress { display: inline-flex; align-items: center; min-height: 44px; }
+  .brand.small, .simple-header .text-button { min-height: 44px; }
+  .mark-button { min-width: 44px; min-height: 44px; padding: 8px 0; }
+  .number-pager { grid-template-columns: 44px 1fr 44px; }
+  .number-pager button { width: 44px; height: 44px; }
+  .question-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; padding-top: 28px; }
+  .question-actions > button { min-height: 48px; width: 100%; padding-inline: 8px; white-space: nowrap; font-size: 13px; }
+  .question-actions .check-now { grid-column: 1 / -1; grid-row: 2; }
+  .question-actions > :last-child { grid-column: 2; grid-row: 1; justify-self: stretch; }
+  .setup-title > button, .study-summary button { min-height: 44px; padding-block: 10px; }
   .exam-layout { width: calc(100% - 20px); margin: 10px auto; }
   .question-panel { min-height: 650px; padding: 24px 19px; }
   .question-number { margin-top: 30px; }
