@@ -1852,7 +1852,9 @@ export default function Home() {
               </div>
             ) : (
               <div className="answer-field">
-                <input
+                <textarea
+                  className="short-answer"
+                  rows={2}
                   value={answers[question.id] ?? ""}
                   disabled={isRevealed}
                   onChange={(event) =>
@@ -1863,7 +1865,7 @@ export default function Home() {
                   }
                   placeholder="정답만 정확히 입력하세요"
                 />
-                <span>출력 형식, 대소문자, 띄어쓰기와 따옴표까지 정답과 동일하게 작성하세요.</span>
+                <span>출력 형식에 따라 Enter로 줄을 구분하고, 대소문자·공백·따옴표까지 동일하게 작성하세요.</span>
               </div>
             )}
 
