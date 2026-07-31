@@ -1886,7 +1886,7 @@ export default function Home() {
                 </strong>
                 <p>
                   <b>{question.kind === "서술형" ? "모범답안" : "정답"}</b>
-                  {question.answer}
+                  <span className="formatted-answer">{question.answer}</span>
                 </p>
                 <div>
                   <b>해설</b>
@@ -2098,8 +2098,8 @@ export default function Home() {
                 </summary>
                 <div className="review-body">
                   {question.code && <pre className="code-block compact">{question.code}</pre>}
-                  <p><b>내 답안</b>{answers[question.id] || "미응답"}</p>
-                  <p><b>{!graded ? "모범답안" : "정답"}</b>{question.answer}</p>
+                  <p><b>내 답안</b><span className="formatted-answer">{answers[question.id] || "미응답"}</span></p>
+                  <p><b>{!graded ? "모범답안" : "정답"}</b><span className="formatted-answer">{question.answer}</span></p>
                   <div className="explanation">
                     <b>판단 과정과 핵심 원리</b>
                     {question.explanation}
