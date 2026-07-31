@@ -2139,16 +2139,7 @@ export default function Home() {
     <main>
       <header className="home-header">
         <div className="brand"><span>Py</span>READY</div>
-        <div className="home-header-actions">
-          <a
-            className="header-pdf-download"
-            href={`${import.meta.env.BASE_URL}downloads/python-subject-exam-core-summary.pdf`}
-            download="Python_과목평가_핵심정리.pdf"
-          >
-            <span aria-hidden="true">↓</span> 요점정리 PDF 받기
-          </a>
-          <span className="local-save-status">오답·북마크 자동 저장</span>
-        </div>
+        <span className="local-save-status">오답·북마크 자동 저장</span>
       </header>
 
       <section className="hero">
