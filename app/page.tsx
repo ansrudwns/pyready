@@ -1474,6 +1474,48 @@ const thinkingIds = new Set([
 ]);
 
 const unsupportedIds = new Set(["op-chain-1", "func-nonlocal", "oop-init-return"]);
+const explanationDetails: Record<string, string> = {
+  "op-3": "int(value)는 계산에 사용할 새 정수만 만들 뿐 value가 가리키는 원래 문자열 객체를 변경하지 않습니다.",
+  "flow-2": "continue 이후 문장은 실행되지 않지만 다음 반복은 계속된다는 점이 break와의 핵심 차이입니다.",
+  "func-2": "global 없이 같은 이름에 대입하면 지역 변수가 새로 만들어지므로 전역 값은 바뀌지 않습니다.",
+  "except-2": "Exception 같은 상위 클래스를 앞에 두면 하위 예외가 먼저 잡혀 세부 처리 절에 도달할 수 없습니다.",
+  "op-truthy-1": "반대로 0이 아닌 수와 한 글자라도 포함한 문자열·컨테이너는 일반적으로 truthy로 평가됩니다.",
+  "op-membership-1": "딕셔너리에 in을 사용하면 값이 아니라 키의 존재 여부를 검사하므로 'Kim'은 값으로 존재해도 False입니다.",
+  "seq-index-1": "text[::-1]은 step을 -1로 지정하므로 마지막 문자부터 첫 문자까지 역순으로 선택합니다.",
+  "seq-tuple-1": "[1,]은 리스트이고 {1,}은 세트이므로 쉼표와 사용된 구분 기호를 함께 확인해야 합니다.",
+  "seq-range-1": "음수 step에서는 작은 방향으로 이동하며 종료값 0은 포함하지 않아 5, 3, 1까지만 생성됩니다.",
+  "seq-method-1": "find는 대상이 없을 때 -1을 반환하지만 index는 ValueError를 발생시키므로 실패 방식이 다릅니다.",
+  "seq-string-immutable": "반환값을 다시 저장하지 않으면 원래 문자열은 그대로이며 호출만으로 값이 바뀌지 않습니다.",
+  "flow-pass-1": "pass는 실행 흐름을 이동시키지 않으므로 continue나 break와 구별해야 합니다.",
+  "flow-while-1": "각 반복에서 n을 먼저 2만큼 감소시킨 뒤 저장하므로 조건 확인 당시 값과 저장되는 값이 다릅니다.",
+  "flow-enumerate": "start=1은 인덱스의 시작 번호만 바꾸며 원본 요소나 순서는 변경하지 않습니다.",
+  "flow-zip": "zip은 가장 짧은 iterable이 끝나는 즉시 종료하므로 숫자 3은 짝을 얻지 못해 제외됩니다.",
+  "func-args-1": "인자가 없어도 args는 빈 튜플이며, 별표는 여러 위치 인자를 하나의 튜플로 패킹합니다.",
+  "func-kwargs-1": "키워드 인자의 이름은 딕셔너리 키가 되고 전달한 값은 대응하는 값으로 저장됩니다.",
+  "func-unpack-1": "별표가 붙은 middle은 남는 요소를 리스트로 모으고 first와 last는 양끝 요소를 받습니다.",
+  "func-return-none": "함수 끝까지 도달하면 암묵적으로 return None을 실행한 것과 같은 결과가 됩니다.",
+  "func-recursion": "기저 조건이 있어도 재귀 인자가 조건에 가까워지지 않으면 종료되지 않으므로 도달 가능성도 확인해야 합니다.",
+  "data-alias-1": "b = a는 복사본이 아니라 동일한 리스트 참조를 저장하므로 b의 append 결과가 a에도 나타납니다.",
+  "data-extend": "append는 리스트 전체를 한 요소로 넣고 extend는 iterable의 각 요소를 차례대로 추가합니다.",
+  "data-remove-pop": "인자를 생략한 pop()은 마지막 요소를 제거해 반환하지만 remove에는 삭제할 값을 전달해야 합니다.",
+  "data-set-1": "집합은 동등한 요소를 하나만 유지하므로 입력 개수와 최종 원소 개수가 달라질 수 있습니다.",
+  "data-set-op": "대칭 차집합은 한쪽에만 있는 원소, 차집합은 왼쪽에만 있는 원소를 구합니다.",
+  "data-dict-view": "keys()는 키만 제공하지만 items()는 각 항목을 (키, 값) 튜플로 제공해 두 변수로 언패킹할 수 있습니다.",
+  "data-get-bracket": "get의 두 번째 인자는 키가 없을 때 반환할 기본값이며 딕셔너리에 새 키를 추가하지 않습니다.",
+  "oop-class-instance": "p1의 인스턴스 속성은 클래스 변수를 가리지만 p2는 계속 클래스의 species 값을 찾습니다.",
+  "oop-super-1": "부모 초기화가 먼저 실행된 뒤 자식의 추가 계산이 수행되므로 속성값을 호출 순서대로 추적해야 합니다.",
+  "oop-namespace": "부모가 여러 개라면 단순 선언 순서가 아니라 클래스에 계산된 MRO를 따라 탐색합니다.",
+  "oop-magic": "__repr__도 표현에 관여하지만 print는 우선 __str__을 사용해 사람이 읽을 문자열을 얻습니다.",
+  "except-else": "else에 후속 코드를 분리하면 try 범위가 불필요하게 넓어져 엉뚱한 예외까지 잡는 일을 줄일 수 있습니다.",
+  "except-as": "type(error).__name__은 예외 객체의 클래스 이름을 문자열로 얻으므로 IndexError가 출력됩니다.",
+  "generated-op-0": "곱셈·나눗셈·나머지는 덧셈보다 우선하며 같은 우선순위는 왼쪽에서 오른쪽으로 계산합니다.",
+  "generated-slice-0": "종료값을 생략하면 끝까지 진행하지만 step 간격에 맞는 인덱스의 문자만 포함됩니다.",
+  "generated-loop-0": "continue가 실행된 반복에서는 누적문이 생략되므로 제외되는 값과 더해지는 값을 분리해 추적해야 합니다.",
+  "generated-function-0": "조건식이 먼저 홀수만 남기고 표현식이 값을 변환하므로 필터링과 변환 순서를 구분해야 합니다.",
+  "generated-dict-0": "get(item, 0)은 처음 등장한 키에 0을 주고 이후에는 저장된 누적값을 읽어 1씩 증가시킵니다.",
+  "generated-exception-0": "예외는 표현식을 평가하는 즉시 발생하며 이후 문장은 실행되지 않고 except 절로 이동합니다.",
+  "generated-oop-0": "인스턴스에 value가 없으면 자식 클래스를 부모보다 먼저 확인하므로 자식 값이 선택됩니다.",
+};
 const rawQuestionBank = [
   ...baseQuestions,
   ...conceptQuestions,
@@ -1482,9 +1524,12 @@ const rawQuestionBank = [
   ...verifiedFundamentalQuestions,
 ].filter((question) => !unsupportedIds.has(question.id));
 
-const questionBank = rawQuestionBank.map((question) => ({
+export const questionBank = rawQuestionBank.map((question) => ({
   ...question,
   ...questionPolish[question.id],
+  explanation: `${questionPolish[question.id]?.explanation ?? question.explanation}${
+    explanationDetails[question.id] ? ` ${explanationDetails[question.id]}` : ""
+  }`,
   difficulty: basicIds.has(question.id)
     ? "기초" as const
     : hardIds.has(question.id)
