@@ -2203,7 +2203,7 @@ export default function Home() {
         >
           <span className="summary-resource-icon" aria-hidden="true">PDF</span>
           <span className="summary-resource-copy">
-            <small>시험 전 핵심 개념을 한 번에 점검하세요</small>
+            <small>2026.08.01 업데이트 · 시험 전 핵심 개념을 한 번에 점검하세요</small>
             <strong>Python 과목평가 핵심 정리</strong>
           </span>
           <span className="summary-resource-action">무료 다운로드 <b aria-hidden="true">↓</b></span>
@@ -2214,7 +2214,10 @@ export default function Home() {
             <span className="section-kicker">PYREADY · {questionBank.length}문항</span>
             <h2>Python 과목평가 연습</h2>
           </div>
-          <p>범위와 문항 수를 고르고 바로 시작하세요.</p>
+          <div className="section-meta">
+            <time dateTime="2026-08-01">최근 업데이트 2026.08.01</time>
+            <p>범위와 문항 수를 고르고 바로 시작하세요.</p>
+          </div>
         </div>
 
         <div className="study-summary">
